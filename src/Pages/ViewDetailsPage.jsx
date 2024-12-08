@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../Components/NavBar";
 
@@ -12,7 +12,9 @@ const ViewDetailsPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/product/${id}`);
+        const response = await fetch(
+          `https://equi-sport-server.vercel.app/product/${id}`
+        );
         if (!response.ok) {
           throw new Error("Product not found");
         }
@@ -35,8 +37,10 @@ const ViewDetailsPage = () => {
 
   return (
     <div className="container bg-gradient-to-r from-blue-500 via-purple-200 to-pink-300  p-5 mx-auto mt-6">
-        <NavBar></NavBar>
-      <h2 className="text-3xl mt-5 font-bold text-center mb-6">{product.itemName}</h2>
+      <NavBar></NavBar>
+      <h2 className="text-3xl mt-5 font-bold text-center mb-6">
+        {product.itemName}
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Product Image */}
         <div>
@@ -50,10 +54,12 @@ const ViewDetailsPage = () => {
         {/* Product Details */}
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <p className="text-lg text-gray-800 mb-3">
-            <span className="font-semibold">Category:</span> {product.categoryName}
+            <span className="font-semibold">Category:</span>{" "}
+            {product.categoryName}
           </p>
           <p className="text-lg text-gray-800 mb-3">
-            <span className="font-semibold">Price:</span> ${product.price || "N/A"}
+            <span className="font-semibold">Price:</span> $
+            {product.price || "N/A"}
           </p>
           <p className="text-lg text-gray-800 mb-3">
             <span className="font-semibold">Rating:</span> {product.rating}⭐

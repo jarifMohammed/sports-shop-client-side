@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedEquipment = () => {
-    const navigate =useNavigate() 
+  const navigate = useNavigate();
   const [featuredItems, setFeaturedItems] = useState([]);
 
   useEffect(() => {
     // Fetch all products
-    fetch('http://localhost:5000/product')
+    fetch("https://equi-sport-server.vercel.app/product")
       .then((response) => response.json())
       .then((data) => {
         // Sort products by rating in descending order
         const sortedProducts = data.sort((a, b) => b.rating - a.rating);
-        
+
         // Select the top 4 products (or any number you prefer)
         const topFeaturedItems = sortedProducts.slice(0, 4);
-        
+
         // Set the top rated products as featured items
         setFeaturedItems(topFeaturedItems);
       })
@@ -51,7 +51,10 @@ const FeaturedEquipment = () => {
                 </p>
               </div>
               <div className="p-6">
-                <button  onClick={() => navigate(`/details/${item._id}`)} className="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition">
+                <button
+                  onClick={() => navigate(`/details/${item._id}`)}
+                  className="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition"
+                >
                   View Details
                 </button>
               </div>

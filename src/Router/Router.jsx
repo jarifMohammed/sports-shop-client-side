@@ -1,8 +1,6 @@
-
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import HomeLayout from "../LayOuts/HomeLayout";
 import AuthLayout from "../LayOuts/AuthLayout";
-
 
 import HomePage from "../Pages/HomePage";
 import AllSportsPage from "../Pages/AllSportsPage";
@@ -15,7 +13,7 @@ import PageNotFound from "../Pages/PageNotFound";
 // import PrivateRouter from "./PrivateRouter";
 import UpdatePage from "../Pages/UpdatePage";
 import PrivateRouter from "./PrivateRouter";
-import Categories from "../Components/Category";
+// import Categories from "../Components/Category";
 
 const Router = createBrowserRouter([
   {
@@ -25,17 +23,12 @@ const Router = createBrowserRouter([
       {
         path: "",
         element: <Navigate to="/home"></Navigate>,
-        
       },
       {
         path: "/home",
         element: <HomePage></HomePage>,
-        loader: () => fetch('http://localhost:5000/product')
+        loader: () => fetch("https://equi-sport-server.vercel.app/product"),
       },
-     
-      
-      
-      
     ],
   },
   {
@@ -55,49 +48,44 @@ const Router = createBrowserRouter([
   {
     path: "/all-sports",
     element: <AllSportsPage></AllSportsPage>,
-     loader: () => fetch("http://localhost:5000/product")
+    loader: () => fetch("https://equi-sport-server.vercel.app/product"),
   },
   {
     path: "/add-equipment",
-    element: 
-    
-        <PrivateRouter>
-          <AddEquipmentPage></AddEquipmentPage>
-        </PrivateRouter>
-      
+    element: (
+      <PrivateRouter>
+        <AddEquipmentPage></AddEquipmentPage>
+      </PrivateRouter>
+    ),
   },
-  
+
   {
     path: "/details/:id",
-    element:<PrivateRouter>
-       <ViewDetailsPage></ViewDetailsPage>
-    </PrivateRouter>,
-    // loader:  ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
-    
-  
-  
-},
+    element: (
+      <PrivateRouter>
+        <ViewDetailsPage></ViewDetailsPage>
+      </PrivateRouter>
+    ),
+    // loader:  ({params}) => fetch(`https://equi-sport-server.vercel.app/product/${params.id}`)
+  },
   {
     path: "/my-equipment",
-    element: 
-      
-        <PrivateRouter>
-          <MyEquipmentListPage> </MyEquipmentListPage>
-        </PrivateRouter>,
-        loader: () => fetch("http://localhost:5000/product")
-      
-    
+    element: (
+      <PrivateRouter>
+        <MyEquipmentListPage> </MyEquipmentListPage>
+      </PrivateRouter>
+    ),
+    loader: () => fetch("https://equi-sport-server.vercel.app/product"),
   },
   {
     path: "/update/:id",
-    element: 
-      
-        <PrivateRouter>
-          <UpdatePage></UpdatePage>
-        </PrivateRouter>,
-       loader:  ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
-      
-    
+    element: (
+      <PrivateRouter>
+        <UpdatePage></UpdatePage>
+      </PrivateRouter>
+    ),
+    loader: ({ params }) =>
+      fetch(`https://equi-sport-server.vercel.app/product/${params.id}`),
   },
   {
     path: "*",

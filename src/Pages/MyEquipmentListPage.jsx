@@ -1,61 +1,60 @@
 import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import NavBar from "../Components/NavBar";
-import Swal from 'sweetalert2';
-
+import Swal from "sweetalert2";
 
 const MyEquipmentListPage = () => {
   const products = useLoaderData();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // Get data passed from the loader
 
   // Function to handle delete
   const handleDelete = async (id) => {
     // Use SweetAlert for confirmation
     const result = await Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     });
-  
+
     if (result.isConfirmed) {
-      const response = await fetch(`http://localhost:5000/product/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://equi-sport-server.vercel.app/product/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         // Success Alert
         Swal.fire({
-          title: 'Success!',
-          text: 'The item has been successfully deleted.',
-          icon: 'success',
-          confirmButtonText: 'Okay',
+          title: "Success!",
+          text: "The item has been successfully deleted.",
+          icon: "success",
+          confirmButtonText: "Okay",
         }).then(() => {
           window.location.reload(); // Reload to refresh the list
         });
       } else {
         // Error Alert
         Swal.fire({
-          title: 'Error!',
-          text: 'Failed to delete the item. Please try again.',
-          icon: 'error',
-          confirmButtonText: 'Okay',
+          title: "Error!",
+          text: "Failed to delete the item. Please try again.",
+          icon: "error",
+          confirmButtonText: "Okay",
         });
       }
     }
   };
-  
-  
-
-  
-  
 
   return (
     <div className="container mx-auto mt-6 px-4">
       <NavBar />
-      <h2 className="text-4xl font-bold mt-5 text-center mb-8 text-gray-800">My Equipment List</h2>
+      <h2 className="text-4xl font-bold mt-5 text-center mb-8 text-gray-800">
+        My Equipment List
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {products.map((product) => (
           <div
@@ -76,10 +75,17 @@ const MyEquipmentListPage = () => {
 
             {/* Item Info */}
             <div className="p-4">
-              <h3 className="text-xl font-semibold text-gray-900">{product.itemName}</h3>
-              <p className="text-gray-500 text-sm mt-1">Category: {product.categoryName}</p>
+              <h3 className="text-xl font-semibold text-gray-900">
+                {product.itemName}
+              </h3>
               <p className="text-gray-500 text-sm mt-1">
-                Price: <span className="text-gray-800 font-medium">${product.price || "N/A"}</span>
+                Category: {product.categoryName}
+              </p>
+              <p className="text-gray-500 text-sm mt-1">
+                Price:{" "}
+                <span className="text-gray-800 font-medium">
+                  ${product.price || "N/A"}
+                </span>
               </p>
             </div>
 

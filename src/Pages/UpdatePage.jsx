@@ -1,14 +1,25 @@
-import { useContext, useState } from 'react';
-import NavBar from '../Components/NavBar';
-import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../Provider/AuthProvider';
-import Swal from 'sweetalert2';
-
+import { useContext, useState } from "react";
+import NavBar from "../Components/NavBar";
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const UpdatePage = () => {
-  const{user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const product = useLoaderData();
-  const { itemName, categoryName, description, price, image, rating, customization, processingTime, stockStatus, userEmail, userName } = product;
+  const {
+    itemName,
+    categoryName,
+    description,
+    price,
+    image,
+    rating,
+    customization,
+    processingTime,
+    stockStatus,
+    userEmail,
+    userName,
+  } = product;
 
   // Rename state variables to avoid conflict
   const [imageState, setImage] = useState(image);
@@ -25,7 +36,7 @@ const UpdatePage = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault(); // Prevent the default form submission
-  
+
     const updatedProduct = {
       itemName: itemNameState,
       categoryName: categoryNameState,
@@ -37,42 +48,41 @@ const UpdatePage = () => {
       processingTime: processingTimeState,
       stockStatus: stockStatusState,
       userEmail: userEmailState,
-      userName: userNameState
+      userName: userNameState,
     };
-  
+
     // Send to the server
-    fetch(`http://localhost:5000/product/${product._id}`, {
-      method: 'PUT',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(updatedProduct)
+    fetch(`https://equi-sport-server.vercel.app/product/${product._id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(updatedProduct),
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json(); // Parse JSON if request is successful
-      } else {
-        throw new Error('Failed to update product');
-      }
-    })
-    .then(data => {
-      // Show success alert
-      Swal.fire({
-        title: 'Success!',
-        text: 'Product has been updated successfully.',
-        icon: 'success',
-        confirmButtonText: 'Okay'
+      .then((res) => {
+        if (res.ok) {
+          return res.json(); // Parse JSON if request is successful
+        } else {
+          throw new Error("Failed to update product");
+        }
+      })
+      .then((data) => {
+        // Show success alert
+        Swal.fire({
+          title: "Success!",
+          text: "Product has been updated successfully.",
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+      })
+      .catch((error) => {
+        // Show error alert if there was an issue
+        Swal.fire({
+          title: "Error!",
+          text: "There was an issue updating the product. Please try again.",
+          icon: "error",
+          confirmButtonText: "Okay",
+        });
       });
-    })
-    .catch(error => {
-      // Show error alert if there was an issue
-      Swal.fire({
-        title: 'Error!',
-        text: 'There was an issue updating the product. Please try again.',
-        icon: 'error',
-        confirmButtonText: 'Okay'
-      });
-    });
   };
-  
 
   return (
     <>
@@ -81,14 +91,18 @@ const UpdatePage = () => {
       </div>
       <div className="w-11/12 mt-5 rounded-xl container mx-auto bg-slate-300 p-7">
         <h2 className="text-2xl font-semibold text-center mb-6">Update Item</h2>
-        <form onSubmit={handleUpdate} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
+        <form
+          onSubmit={handleUpdate}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
           {/* User Email (Read-only) */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">User Email</label>
+            <label className="block text-sm font-medium text-gray-700">
+              User Email
+            </label>
             <input
               type="email"
-              value={user?.email || ''}
+              value={user?.email || ""}
               readOnly
               className="mt-2 block w-full p-2 border border-gray-300 rounded bg-gray-100"
             />
@@ -96,18 +110,22 @@ const UpdatePage = () => {
 
           {/* User Name (Read-only) */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">User Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              User Name
+            </label>
             <input
               type="text"
-              value={user?.displayName || ''}
+              value={user?.displayName || ""}
               readOnly
               className="mt-2 block w-full p-2 border border-gray-300 rounded bg-gray-100"
             />
           </div>
-          
+
           {/* Image */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Image URL</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Image URL
+            </label>
             <input
               type="url"
               value={imageState}
@@ -120,7 +138,9 @@ const UpdatePage = () => {
 
           {/* Item Name */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Item Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Item Name
+            </label>
             <input
               type="text"
               value={itemNameState}
@@ -133,7 +153,9 @@ const UpdatePage = () => {
 
           {/* Price */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Price</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Price
+            </label>
             <input
               type="number"
               value={priceState}
@@ -146,7 +168,9 @@ const UpdatePage = () => {
 
           {/* Category Name */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Category Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Category Name
+            </label>
             <input
               type="text"
               value={categoryNameState}
@@ -159,7 +183,9 @@ const UpdatePage = () => {
 
           {/* Description */}
           <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Description
+            </label>
             <textarea
               value={descriptionState}
               onChange={(e) => setDescription(e.target.value)}
@@ -171,7 +197,9 @@ const UpdatePage = () => {
 
           {/* Rating */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Rating</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Rating
+            </label>
             <input
               type="number"
               min="1"
@@ -186,7 +214,9 @@ const UpdatePage = () => {
 
           {/* Customization */}
           <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700">Customization</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Customization
+            </label>
             <input
               type="text"
               value={customizationState}
@@ -198,7 +228,9 @@ const UpdatePage = () => {
 
           {/* Processing Time */}
           <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-700">Processing Time</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Processing Time
+            </label>
             <input
               type="text"
               value={processingTimeState}
@@ -211,17 +243,19 @@ const UpdatePage = () => {
 
           {/* Stock Status */}
           <div className="col-span-1">
-  <label className="block text-sm font-medium text-gray-700">Stock Status</label>
-  <select
-    value={stockStatus}
-    onChange={(e) => setStockStatus(e.target.value)}
-    className="mt-2 block w-full p-2 border border-gray-300 rounded"
-    required
-  >
-    <option value="inStock">In Stock</option>
-    <option value="outOfStock">Out of Stock</option>
-  </select>
-</div>
+            <label className="block text-sm font-medium text-gray-700">
+              Stock Status
+            </label>
+            <select
+              value={stockStatus}
+              onChange={(e) => setStockStatus(e.target.value)}
+              className="mt-2 block w-full p-2 border border-gray-300 rounded"
+              required
+            >
+              <option value="inStock">In Stock</option>
+              <option value="outOfStock">Out of Stock</option>
+            </select>
+          </div>
 
           {/* Submit Button */}
           <div className="col-span-2 text-center mt-4">

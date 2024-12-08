@@ -16,7 +16,7 @@ const handleGoogleLogin = async () => {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;  // User details from Firebase
         setUser(user);  // Optionally store the user in your state or context
-        console.log("Google Login successful:", user);
+        // console.log("Google Login successful:", user);
     } catch (error) {
         console.error("Google Login Error:", error.message);
     }
