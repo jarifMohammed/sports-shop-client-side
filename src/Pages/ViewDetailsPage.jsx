@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../Components/NavBar";
+import Loading from "./Loading";
 
 const ViewDetailsPage = () => {
   const { id } = useParams(); // Get the `id` from the URL
@@ -30,7 +31,7 @@ const ViewDetailsPage = () => {
     fetchProduct();
   }, [id]); // Re-run the effect if the `id` changes
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading></Loading>
   if (error) return <p>Error: {error}</p>;
 
   if (!product) return <p>Product not found</p>;
