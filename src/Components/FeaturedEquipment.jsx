@@ -24,7 +24,11 @@ const FeaturedEquipment = () => {
 
   return (
     <section className="">
+<<<<<<< HEAD
       <div className="container bg-orange-100 opacity-80 rounded-xl p-5 mx-auto text-center">
+=======
+      <div className="container mx-auto text-center">
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
         <h2 className="text-4xl font-semibold text-gray-500 mb-8">
           Featured Equipment
         </h2>

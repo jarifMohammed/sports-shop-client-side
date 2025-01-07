@@ -10,9 +10,14 @@ import Member from "../Components/Member";
 
 const HomeLayout = () => {
   return (
+<<<<<<< HEAD
     <div className="min-h-screen
      bg-stone-50 dark:bg-gray-900 text-black dark:text-white">
       <section className="w-11/12   mx-auto py-3">
+=======
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
+      <section className="w-11/12 mx-auto py-3">
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
         <NavBar />
       </section>
 

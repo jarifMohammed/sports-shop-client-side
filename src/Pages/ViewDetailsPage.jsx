@@ -37,6 +37,7 @@ const ViewDetailsPage = () => {
   if (!product) return <p>Product not found</p>;
 
   return (
+<<<<<<< HEAD
     <>
     <div className="fixed justify-center  md:px-10 ml-5 top-0 z-50">
     <NavBar></NavBar>
@@ -47,6 +48,14 @@ const ViewDetailsPage = () => {
         {product.itemName}
       </h2>
       <div className=" mt-20 grid grid-cols-1 sm:grid-cols-2 gap-6">
+=======
+    <div className="container bg-gradient-to-r from-blue-500 via-purple-200 to-pink-300  p-5 mx-auto mt-6">
+      <NavBar></NavBar>
+      <h2 className="text-3xl mt-5 font-bold text-center mb-6">
+        {product.itemName}
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
         {/* Product Image */}
         <div>
           <img
@@ -63,11 +72,19 @@ const ViewDetailsPage = () => {
             {product.categoryName}
           </p>
           <p className="text-lg text-gray-800 mb-3">
+<<<<<<< HEAD
             <span className="font-semibold"></span> $
             {product.price || "N/A"}
           </p>
           <p className="text-lg text-gray-800 mb-3">
             <span className="font-semibold"></span> {product.rating}⭐
+=======
+            <span className="font-semibold">Price:</span> $
+            {product.price || "N/A"}
+          </p>
+          <p className="text-lg text-gray-800 mb-3">
+            <span className="font-semibold">Rating:</span> {product.rating}⭐
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
           </p>
           <p className="text-lg text-gray-800 mb-3">
             <span className="font-semibold">Description:</span>{" "}
@@ -88,8 +105,11 @@ const ViewDetailsPage = () => {
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     </>
     
+=======
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
   );
 };
 

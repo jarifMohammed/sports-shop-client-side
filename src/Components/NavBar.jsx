@@ -15,7 +15,11 @@ const NavBar = () => {
   };
 
   return (
+<<<<<<< HEAD
     <nav className="fixed w-11/12   mx-auto bg-white backdrop-blur-3xl text-black shadow-xl z-50">
+=======
+    <nav className="sticky top-0 bg-white backdrop-blur-3xl text-black shadow-xl z-50">
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -25,7 +29,11 @@ const NavBar = () => {
             title="Logo Animation"
             style={{ pointerEvents: "none" }}
           ></iframe>
+<<<<<<< HEAD
           <span className="text-2xl  font-semibold text-gray-600">
+=======
+          <span className="text-2xl font-semibold text-gray-600">
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
             EquiSports
           </span>
         </div>
@@ -87,7 +95,11 @@ const NavBar = () => {
               </p>
               <button
                 onClick={logOut}
+<<<<<<< HEAD
                 className="btn btn-neutral rounded-badge px-2 py-2 text-sm md:text-base hover:bg-red-500 text-white"
+=======
+                className="btn btn-neutral rounded-badge px-4 py-2 text-sm md:text-base hover:bg-red-500 text-white"
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
                 data-tip="Log Out"
                 data-for="logOut"
               >

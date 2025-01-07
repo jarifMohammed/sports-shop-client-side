@@ -79,10 +79,17 @@ const AddEquipmentPage = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="fixed top-0 w-11/12 md:ml-20 px-4 mt-5 z-50">
         <NavBar />
       </div>
       <div className=" container  w-11/12 mt-24  rounded-xl  mx-auto bg-slate-300 px-10 ">
+=======
+      <div className="w-11/12 mx-auto mt-5">
+        <NavBar />
+      </div>
+      <div className="w-11/12 mt-5 rounded-xl container mx-auto bg-slate-300 p-7">
+>>>>>>> 2a1f45546f844368530cb74a92dc1d891e878130
         <h2 className="text-2xl font-semibold text-center mb-6">
           Add New Item
         </h2>
