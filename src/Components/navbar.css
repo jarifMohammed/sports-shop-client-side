@@ -1,0 +1,44 @@
+/* Custom Tooltip Styles */
+[data-tip] {
+    position: relative;
+  }
+  
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: 100%; /* Adjusted to appear below the hovered element */
+    left: 50%; /* Centers the tooltip relative to the hovered element */
+    transform: translate(-50%, 10px); /* Adjusts both horizontal and vertical placement */
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    white-space: nowrap; /* Prevents text wrapping */
+    z-index: 1000; /* Ensures tooltip is above other elements */
+  }
+  
+  [data-tip]:hover::before {
+    content: "";
+    position: absolute;
+    top: 95%; /* Positions the arrow below the hovered element */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  [data-tip]:hover::after,
+  [data-tip]:hover::before {
+    opacity: 1;
+    visibility: visible;
+  }
+  
